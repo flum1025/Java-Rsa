@@ -26,7 +26,7 @@ import javax.crypto.spec.SecretKeySpec;
 public class RSASample {
 
 	public static void main(String[] args) throws Exception {
-		File keyFile = new File(""); //javaではpemファイルは扱えないため、derに変換して指定する。        
+		File keyFile = new File("/Users/flum/desktop/public_key.der");  //javaではpemファイルは扱えないため、derに変換して指定する。      
 		byte[] encodedKey = new byte[(int)keyFile.length()];
 
 		FileInputStream in = new FileInputStream(keyFile);
@@ -40,7 +40,7 @@ public class RSASample {
 
 		Cipher rsa = Cipher.getInstance("RSA");
 		rsa.init(Cipher.ENCRYPT_MODE, pubKey);  
-		String plainTest = "";
+		String plainTest = "testplaintext";
 		byte[] plainText = plainTest.getBytes();
 		byte[] cipherText = rsa.doFinal(plainText);
 		System.out.println(Base64.getEncoder().encodeToString(cipherText));
